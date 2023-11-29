@@ -10,7 +10,8 @@ const COMMANDS = {
         description: 'TDK sözlükteki ham verileri indirir.',
         args: { 
             out: { tr: ['çıktı', 'ç'], description: 'Çıktı klasörünün konumu.', default: 'tdk' },
-            tar: { tr: ['tar', 't'], description: 'Çıktı klasörünü tar arşivine çevirir.', default: false }
+            tar: { tr: ['tar', 't'], description: 'Çıktı klasörünü tar arşivine çevirir.', default: false },
+            multi: { tr: ['eşzamanlı', 'e'], description: 'Aynı anda kaç kelimenin indirileceğini belirtir.', default: 5 } 
         },
         function: 'save' 
     },
@@ -39,6 +40,8 @@ function help() {
 
 
 const COMMAND = argv._[0]
+
+//!async function () { console.log(await tdk.word('test')); process.exit() }()
 
 /* Eğer bir komut girilmişse onu tespit eder.
  * Türkçe girdileri İngilizceye çevirir. Argümanları gerekirse varsayılan değerlerine atar, uygun fonksiyonu commands/ klasöründen yürütür.
