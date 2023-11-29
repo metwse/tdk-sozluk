@@ -13,7 +13,7 @@ const get = async url => {
                 const text = await fetch(url, { headers: API_HEADERS }).then(r => r.text()) 
                 try { 
                     r(JSON.parse(text))
-                    fs.writeFile(cfile((url)), text, () => null)
+                    fs.writeFile(cfile(url), text, () => null)
                 } catch { return r({ error: 'JSON' }) }
             }
             else r(JSON.parse(data))
