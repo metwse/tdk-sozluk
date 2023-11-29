@@ -3,7 +3,6 @@ module.exports = async args => {
     const data = await tdk.wordList()
     clearLine()
     console.log(`${data.length} kelime indirilecek.\n`)
-
     
     for (let i = 0; i < data.length; i += args.multi) {
         clear = 0
@@ -16,7 +15,7 @@ module.exports = async args => {
             else return
         }))
         clearLines(args.multi)
-        
     }
 
+    console.log('Veriler ön belleğe alındı.')
 }

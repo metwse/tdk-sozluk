@@ -1,6 +1,5 @@
 module.exports = () => {
-    console.log(`
-    TDK Sözlük Veri İndirici
+    console.log(`    TDK Sözlük Veri İndirici
     2023  Metehan Selvi, me@metw.cc
 
 This program is free software: you can redistribute it and/or modify

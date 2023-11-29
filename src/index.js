@@ -11,8 +11,12 @@ const COMMANDS = {
         args: { 
             multi: { tr: ['eşzamanlı', 'e'], description: 'Aynı anda kaç kelimenin indirileceğini belirtir.', default: 5 } 
         },
-        function: 'save' 
+        function: 'cache' 
     },
+    'ön-belleği-temizle': {
+        description: 'Geçici dosyalar klasöründeki ön belleği temizler.',
+        function: 'clearCache' 
+    }, 
     'json': {
         description: 'JSON veri tabanı olarak kaydeder. Daha fazla bilgi için README.md dosyasını okuyun.',
         args: { 
@@ -20,10 +24,6 @@ const COMMANDS = {
         },
         function: 'json' 
     },
-    'ön-belleği-temizle': {
-        description: 'Geçici dosyalar klasöründeki ön belleği temizler.',
-        function: 'clearCache' 
-    }, 
     'lisans': {
         description: 'Lisans hakkında bilgi verir.',
         function: 'license'
@@ -32,7 +32,7 @@ const COMMANDS = {
 
 
 function help() {
-    console.log('  TDK Sözlük Veri İndirici  Copyright (C) 2023  Metehan Selvi\nThis program comes with ABSOLUTELY NO WARRANTY.\nThis is free software, and you are welcome to redistribute it under certain conditions; visit\nhttps://github.com/metwse/tdk-sozluk/blob/main/LICENSE for details.\n\n')
+    console.log('    TDK Sözlük Veri İndirici  Copyright (C) 2023  Metehan Selvi\nThis program comes with ABSOLUTELY NO WARRANTY.\nThis is free software, and you are welcome to redistribute it under certain conditions; visit\nhttps://github.com/metwse/tdk-sozluk/blob/main/LICENSE for details.\n\n')
     
     console.log('İŞLEVLER')
     for (const [name, data] of Object.entries(COMMANDS)) {
