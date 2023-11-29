@@ -6,24 +6,33 @@ const argv = require('minimist')(process.argv.slice(2))
 require('./util.js')(global)
 
 const COMMANDS = {
-    'veri': {
-        description: 'TDK sözlükteki ham verileri indirir.',
+    'ön-bellek': {
+        description: 'TDK sözlükteki ham verileri ön belleğe alır. Hızlı indirdiği için database kaydetme komutlarından önce kullanılması tavsiye edilir.',
         args: { 
-            out: { tr: ['çıktı', 'ç'], description: 'Çıktı klasörünün konumu.', default: 'tdk' },
-            tar: { tr: ['tar', 't'], description: 'Çıktı klasörünü tar arşivine çevirir.', default: false },
             multi: { tr: ['eşzamanlı', 'e'], description: 'Aynı anda kaç kelimenin indirileceğini belirtir.', default: 5 } 
         },
         function: 'save' 
     },
+    'json': {
+        description: 'JSON veri tabanı olarak kaydeder. Daha fazla bilgi için README.md dosyasını okuyun.',
+        args: { 
+            out: { tr: ['çıktı', 'ç'], description: 'Çıktı dosyasının konumu.', default: 'tdk.tar.gz' }
+        },
+        function: 'json' 
+    },
     'ön-belleği-temizle': {
         description: 'Geçici dosyalar klasöründeki ön belleği temizler.',
         function: 'clearCache' 
-    } 
+    }, 
+    'lisans': {
+        description: 'Lisans hakkında bilgi verir.',
+        function: 'license'
+    }
 }
 
 
 function help() {
-    console.log('tdk-sozluk\n\n')
+    console.log('  TDK Sözlük Veri İndirici  Copyright (C) 2023  Metehan Selvi\nThis program comes with ABSOLUTELY NO WARRANTY.\nThis is free software, and you are welcome to redistribute it under certain conditions; visit\nhttps://github.com/metwse/tdk-sozluk/blob/main/LICENSE for details.\n\n')
     
     console.log('İŞLEVLER')
     for (const [name, data] of Object.entries(COMMANDS)) {
