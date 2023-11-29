@@ -14,7 +14,7 @@ module.exports = async args => {
             }
             else return
         }))
-        clearLines(args.multi)
+        clearLines(clear)
     }
 
     console.log('Veriler ön belleğe alındı.')
