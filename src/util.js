@@ -11,4 +11,7 @@ module.exports = g => {
     g.hash = data => crypto.createHash('md5').update(data).digest('hex');
     g.cfile = f => path.join(CACHE, hash(f))
     g.clearLine = () => (process.stdout.moveCursor(0, -1), process.stdout.clearLine(1))
+    g.clearLines = count => {
+        for (let i = 0; i < count; i++) g.clearLine()
+    }
 }

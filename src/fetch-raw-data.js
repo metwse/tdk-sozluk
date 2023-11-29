@@ -11,8 +11,10 @@ const get = async url => {
         fs.readFile(cfile(url), 'utf8', async (err, data) => {
             if (err) {
                 const text = await fetch(url, { headers: API_HEADERS }).then(r => r.text()) 
-                r(JSON.parse(text))
-                fs.writeFile(cfile((url)), text, () => null)
+                try { 
+                    r(JSON.parse(text))
+                    fs.writeFile(cfile((url)), text, () => null)
+                } catch { return r({ error: 'JSON' }) }
             }
             else r(JSON.parse(data))
         })

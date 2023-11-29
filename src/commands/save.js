@@ -4,9 +4,19 @@ module.exports = async args => {
     clearLine()
     console.log(`${data.length} kelime indirilecek.\n`)
 
-    for (const [index, word] of Object.entries(data)) {
-        clearLine()
-        console.log(`${+index + 1} / ${data.length}: ${word}`)
-        await tdk.word(word)
+    
+    for (let i = 0; i < data.length; i += args.multi) {
+        clear = 0
+        await Promise.all(new Array(args.multi).fill(0).map(async (_, o) => { 
+            if (i + o <= data.length) { 
+                console.log(`${i + o + 1} / ${data.length}: ${data[i + o]}`)
+                await tdk.word(data[i + o])
+                clear++
+            }
+            else return
+        }))
+        clearLines(args.multi)
+        
     }
+
 }
