@@ -19,6 +19,7 @@
   "dependencies": {
     "fs": "^0.0.1-security",
     "minimist": "^1.2.8",
-    "node-fetch": "^2.7.0"
+    "node-fetch": "^2.7.0",
+    "tar": "^6.2.0"
   }
 }

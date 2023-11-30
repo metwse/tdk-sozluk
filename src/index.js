@@ -1,5 +1,5 @@
 Object.assign(global, { 
-    tdk: require('./fetch-raw-data.js'),
+    tdk: require('./fetch-raw-data.js'), tar: require('tar'),
     fs: require('fs'), os: require('os'), path: require('path')
 })
 const argv = require('minimist')(process.argv.slice(2))
@@ -17,12 +17,26 @@ const COMMANDS = {
         description: 'Geçici dosyalar klasöründeki ön belleği temizler.',
         function: 'clearCache' 
     }, 
-    'json': {
-        description: 'JSON veri tabanı olarak kaydeder. Daha fazla bilgi için README.md dosyasını okuyun.',
+    'ön-belleği-yükle': {
+        description: 'Tar dosyasını ön belleğe yükler.',
+        args: { 
+            input: { tr: ['girdi', 'g'], description: 'Girdi dosyasının konumu.', default: 'tdk.tar.gz' }
+        },
+        function: 'loadCache'
+    },
+    'ön-belleği-kaydet': {
+        description: 'Ön belleği tar dosyasına kaydeder.',
         args: { 
             out: { tr: ['çıktı', 'ç'], description: 'Çıktı dosyasının konumu.', default: 'tdk.tar.gz' }
         },
-        function: 'json' 
+        function: 'exportCache'
+    },
+    'rofi-tdk': {
+        description: 'rofi-tdk\'nin kullanabileceği bir tar dosyası şeklinde ön belleği kaydeder.',
+        args: { 
+            out: { tr: ['çıktı', 'ç'], description: 'Çıktı dosyasının konumu.', default: 'rofi-tdk.tar.gz' }
+        },
+        function: 'rofiTdk' 
     },
     'lisans': {
         description: 'Lisans hakkında bilgi verir.',
