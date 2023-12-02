@@ -1,4 +1,4 @@
-Veri tabanından yüklü miktarda veri çekmek, hele bunu arama API'siyle yapmak TDK sitesini epey yoruyor. [Hâlihazırda](https://github.com/metwse/tdk-sozluk/releases/tag/12-ham) indirilmiş bir veri tabanını kullanmanız, site için iyi olacaktır. Bu veri tabanını `ön-belleği-yükle -g tdk.tar.gz` fonksiyonuyla programa yükleyebilirsiniz.
+Veri tabanından yüklü miktarda veri çekmek, hele bunu arama API'siyle yapmak TDK sitesini epey yoruyor. [Hâlihazırda indirilmiş](https://github.com/metwse/tdk-sozluk/releases/tag/12-ham) bir veri tabanını kullanmanız, site için iyi olacaktır. Bu veri tabanını `ön-belleği-yükle -g tdk.tar.gz` fonksiyonuyla programa yükleyebilirsiniz.
 
 # TDK Sözlük
 Sözlüğün 12. baskısının dijital versiyonunu TDK API'sinden \([/gts](https://sozluk.gov.tr/gts)\) çeker. API'de kelimeleri numaralarıyla doğrudan çekmek mümkün olmadığından [/autocomplete.json](https://sozluk.gov.tr/autocomplete.json)'u kullanır.
