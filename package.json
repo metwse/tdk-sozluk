@@ -3,20 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/metwse/tdk-sozluk.git"
   },
-  "author": "metwse",
+  "author": "Metehan Selvi <me@metehanselvi.com>",
   "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/metwse/tdk-sozluk/issues"
   },
   "homepage": "https://github.com/metwse/tdk-sozluk#readme",
   "dependencies": {
-    "fs": "^0.0.1-security",
     "minimist": "^1.2.8",
-    "node-fetch": "^2.7.0",
     "tar": "^6.2.0"
   },
   "devDependencies": {

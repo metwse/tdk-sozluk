@@ -1,4 +1,4 @@
-module.exports = () => {
+export default async function () {
   console.log(`    TDK Sözlük Veri İndirici
     2023  Metehan Selvi, me@metehanselvi.com
 
@@ -13,5 +13,5 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.`)
+along with this program.  If not, see <https://www.gnu.org/licenses/>.`);
 }

@@ -1,9 +1,7 @@
-Object.assign(global, {
-  tdk: require('./fetch-raw-data.js'), tar: require('tar'),
-  fs: require('fs'), os: require('os'), path: require('path')
-})
-const argv = require('minimist')(process.argv.slice(2))
-require('./util.js')(global)
+import minimist from 'minimist';
+
+
+const argv = minimist(process.argv.slice(2));
 
 const COMMANDS = {
   'ön-bellek': {
@@ -42,27 +40,27 @@ const COMMANDS = {
     description: 'Lisans hakkında bilgi verir.',
     function: 'license'
   }
-}
+};
 
 
 function help() {
-  console.log('    TDK Sözlük Veri İndirici  Copyright (C) 2023  Metehan Selvi\nThis program comes with ABSOLUTELY NO WARRANTY.\nThis is free software, and you are welcome to redistribute it under certain conditions; visit\nhttps://github.com/metwse/tdk-sozluk/blob/main/LICENSE for details.\n\n')
+  console.log('    TDK Sözlük Veri İndirici  Copyright (C) 2023  Metehan Selvi\nThis program comes with ABSOLUTELY NO WARRANTY.\nThis is free software, and you are welcome to redistribute it under certain conditions; visit\nhttps://github.com/metwse/tdk-sozluk/blob/main/LICENSE for details.\n\n');
 
-  console.log('İŞLEVLER')
+  console.log('İŞLEVLER');
   for (const [name, data] of Object.entries(COMMANDS)) {
-    console.log(`  ${name}\n    ${data.description}`)
+    console.log(`  ${name}\n    ${data.description}`);
     if (data.args) {
       for (const [_arg, { tr, description, default: _default }] of Object.entries(data.args)) {
-        console.log(`    ${tr.map(a => a.length == 1 ? `-${a}` : `--${a}`).join(', ')}`)
-        console.log(`      ${description} (Varsayılan: ${_default})`)
+        console.log(`    ${tr.map(a => a.length == 1 ? `-${a}` : `--${a}`).join(', ')}`);
+        console.log(`      ${description} (Varsayılan: ${_default})`);
       }
     }
-    console.log('')
+    console.log('');
   }
 }
 
 
-const COMMAND = argv._[0]
+const COMMAND = argv._[0];
 
 //!async function () { console.log(await tdk.word('test')); process.exit() }()
 
@@ -72,25 +70,28 @@ const COMMAND = argv._[0]
 test: {
   for (const [name, opt] of Object.entries(COMMANDS)) {
     if (name.toLowerCase() == COMMAND?.toLowerCase()) {
-      const args = {}
+      const args = {};
 
       if (opt.args) {
-        const mapper = {}
+        const mapper = {};
         // Bağlayıcı için ön bellek. Hashmap fonksiyonu yazmak yerine JavaScript'inkini kullandım.
         for (const [arg, argOpt] of Object.entries(opt.args))
-        Object.assign(mapper, Object.fromEntries(argOpt.tr.map(t => [t, arg]))), args[arg] = argOpt.default
+          Object.assign(mapper, Object.fromEntries(argOpt.tr.map(t => [t, arg]))), args[arg] = argOpt.default;
 
         for (const [arg, value] of Object.entries(argv)) {
-          if (arg == '_') continue
-          const argName = mapper[arg]
-          if (!argName) throw `Bilinmeyen argüman: ${arg}`
-          args[argName] = value
+          if (arg == '_') continue;
+          const argName = mapper[arg];
+          if (!argName) throw `Bilinmeyen argüman: ${arg}`;
+          args[argName] = value;
         }
       }
 
-      require(`./commands/${opt.function}.js`).bind(global)(args)
-      break test
+      const module = await import(`./commands/${opt.function}.js`);
+
+      module.default(args);
+
+      break test;
     }
   }
-  help()
+  help();
 }
